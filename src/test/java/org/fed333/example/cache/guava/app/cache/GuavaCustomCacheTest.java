@@ -42,8 +42,16 @@ public class GuavaCustomCacheTest {
     }
 
     @Test
-    public void cache_isLastRecentlyUsedRemains() throws InterruptedException {
+    public void cache_isLeastRecentlyUsedRemains() throws InterruptedException {
         fillCacheWithTestData(10, "Number ");
+
+        for (int i = 0; i < 10; i++) {
+            cache.get("Number 5");
+            cache.get("Number 6");
+            cache.get("Number 7");
+            cache.get("Number 8");
+            cache.get("Number 9");
+        }
 
         cache.get("Number 0");
         Thread.sleep(1000);
